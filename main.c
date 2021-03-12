@@ -1,16 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-extern int asciisum(int*, char**);
+extern int assem(int*, char**);
 
 int main(int argc, char** argv) {
-    printf("String\t\t\t\tASCII Value");
-    printf("----------------------------------------------------------------------");
+    fprintf(stdout, "String\t\t\t\tASCII Value");
+    fprintf(stdout, "----------------------------------------------------------------------");
 
     for (int i = 0; i < argc; i++) {
-        fprintf("%s\t\t\t", argv[i]);
-        fprintf("%d\n", atoi(argv[i]));
+        fprintf(stdout, "%s\t\t\t", argv[i]);
+        fprintf(stdout, "%d\n", atoi(argv[i]));
     }
-    printf("----------------------------------------------------------------------");
-    fprintf(stdout, "%d", asciisum(&argc, argv));
+    fprintf(stdout, "----------------------------------------------------------------------");
+    fprintf(stdout, "%d", assem(&argc, argv));
 }

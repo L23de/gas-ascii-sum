@@ -1,11 +1,10 @@
-.global asciisum
-asciisum:
+.global assem
+assem:
     /*
     arg1 - &argc
     arg2 - argv
     4th and 5th arg of argv is lower, upper bound
     Return the sum of the ASCII values in argv that fall in [lower, upper]
-    (Refer to Github explanation)
     */
 
     # Zeroes out the registers that will be used
