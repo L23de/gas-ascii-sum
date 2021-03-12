@@ -1,11 +1,16 @@
 asciisum: assem.o main.o
+	mkdir -p bin
 	gcc -o asciisum main.o assem.o
+	mv asciisum bin/asciisum
+	mv main.o bin/main.o
+	mv assem.o bin/assem.o
 
-main.o: main.c
-	gcc -c main.c
+main.o:
+	gcc -c src/main.c
 
-assem.o: assem.S
-	as -o assem.o assem.S
+assem.o:
+	as -o assem.o src/assem.S
 
 clean:
-	rm -f *.o asciisum
+	rm -f *.o asciisum 
+	rm -rf bin
