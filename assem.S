@@ -3,47 +3,24 @@ assem:
     /*
     arg1 - &argc
     arg2 - argv
-    1st and 2nd arg of argv is lower, upper bound
-    Return the sum of the ASCII values in argv that fall in [lower, upper]
+    Return the sum of the ASCII values in argv
     */
 
     # Zeroes out the registers that will be used
     xor %rax, %rax
     xor %rdx, %rdx
     xor %rcx, %rcx
-    xor %r8, %r8
     xor %r10, %r10
     xor %r15, %r15
 
-
-    # Finds lower
-    leaq 8(%rsi), %r15 # r15 used as a temp storage
-    movq (%r15), %r15
-    movb (%r15), %dl # dl = 1st element; rdx reg
-
-    # Finds upper
-    leaq 16(%rsi), %r15
-    movq (%r15), %r15
-    movb (%r15), %cl # cl = 2nd element; rcx reg
-
-    movb (%rdi), %r8b # r8b = argc; r8 reg
-
-    # Converts from ASCII to int
-    subb $48, %cl 
-    subb $48, %dl 
-
-    cmpb $1, %dl # if dl < 50 (1 in ASCII)
-    jl exit
-    cmpb %r8b, %cl # if upper >= argc exit
-    jge exit
-    cmpb %cl, %dl # if lower > upper exit
-    jg exit
+    movb (%rdi), %cl # cl = argc; rcx reg
+    movb $1, %dl # dl = index; rdx reg
 
     jmp firstD
 
 firstD: # Loops thru "1st dimension"
-    cmpb %cl, %dl # If counter <= cl; if counter > cl exit
-    jg exit # Exits loop
+    cmpb %cl, %dl # If index < argc; if index >= argc exit
+    jge exit # Exits loop
 
     # Finds address of the next element in the 1D array, 8 is sizeof(pointer)
     leaq (%rsi, %rdx, 8), %r15 # @ to 1D array
