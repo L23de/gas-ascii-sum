@@ -3,7 +3,7 @@ assem:
     /*
     arg1 - &argc
     arg2 - argv
-    4th and 5th arg of argv is lower, upper bound
+    1st and 2nd arg of argv is lower, upper bound
     Return the sum of the ASCII values in argv that fall in [lower, upper]
     */
 
@@ -17,14 +17,14 @@ assem:
 
 
     # Finds lower
-    leaq 24(%rsi), %r15 # r15 used as a temp storage
+    leaq 8(%rsi), %r15 # r15 used as a temp storage
     movq (%r15), %r15
-    movb (%r15), %dl # dl = 4th element; rdx reg
+    movb (%r15), %dl # dl = 1st element; rdx reg
 
     # Finds upper
-    leaq 32(%rsi), %r15
+    leaq 16(%rsi), %r15
     movq (%r15), %r15
-    movb (%r15), %cl # cl = 5th element; rcx reg
+    movb (%r15), %cl # cl = 2nd element; rcx reg
 
     movb (%rdi), %r8b # r8b = argc; r8 reg
 
