@@ -1,7 +1,6 @@
 asciisum: assem.o main.o
 	mkdir -p bin
 	gcc -o asciisum main.o assem.o
-	mv asciisum bin/asciisum
 	mv main.o bin/main.o
 	mv assem.o bin/assem.o
 
